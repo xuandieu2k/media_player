@@ -14,19 +14,19 @@ Welcome to **Media Player**, a modern and feature-rich media player that lets yo
 Here are a few screenshots of the Media Player app in action:
 
 ### Main Interface
-![Main Interface](./screenshots/main_interface.png)
+![Main Interface](./screenshots/1.jpg)
 
 ### Playlist View
-![Playlist View](./screenshots/playlist_view.png)
+![Playlist View](./screenshots/2.jpg)&nbsp;&nbsp;![Playlist View](./screenshots/3.jpg)&nbsp;&nbsp;![Playlist View](./screenshots/4.jpg)
 
 ### Now Playing Screen
-![Now Playing Screen](./screenshots/now_playing.png)
+![Now Playing Screen](./screenshots/4.jpg)
 
 ## Demo Video
 
 Check out the demo video below to see the app in action:
 
-[![Media Player Demo](./screenshots/video_thumbnail.png)](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK)
+[![Media Player Demo](./screenshots/1.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK)
 
 Click on the image above or [here](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK) to watch the full demo on YouTube.
 
