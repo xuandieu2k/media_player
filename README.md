@@ -17,8 +17,6 @@ Here are a few screenshots of the Media Player app in action:
 
 ### Main Interface
 
-### Main Interface
-
 <img src="./screenshots/1.jpg" alt="Main Interface" style="height: 360px; width: auto;"/>
 
 ### Playlist View
@@ -39,6 +37,9 @@ Here are a few screenshots of the Media Player app in action:
 Check out the demo video below to see the app in action:
 
 [Media Player Demo]
+
+<iframe width="810" height="443" src="https://www.youtube.com/embed/UX_Gqoeq4HE" title="Demo ứng dụng karaoke Music Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <a href="https://youtu.be/UX_Gqoeq4HE">
 <img src="./screenshots/1.jpg" alt="Media Player Demo" style="height: 360px; width: auto;"/>
 </a>
