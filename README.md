@@ -26,9 +26,9 @@ Here are a few screenshots of the Media Player app in action:
 
 Check out the demo video below to see the app in action:
 
-[![Media Player Demo](./screenshots/1.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK)
+[![Media Player Demo](./screenshots/1.jpg)](https://youtu.be/UX_Gqoeq4HE)
 
-Click on the image above or [here](https://www.youtube.com/watch?v=YOUR_VIDEO_LINK) to watch the full demo on YouTube.
+Click on the image above or [here](https://youtu.be/UX_Gqoeq4HE) to watch the full demo on YouTube.
 
 ## Installation
 
