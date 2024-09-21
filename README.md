@@ -14,13 +14,16 @@ Welcome to **Media Player**, a modern and feature-rich media player that lets yo
 Here are a few screenshots of the Media Player app in action:
 
 ### Main Interface
-![Main Interface](./screenshots/1.jpg)
+### Main Interface
+<img src="./screenshots/1.jpg" alt="Main Interface" style="height: 150px; width: auto;"/>
 
 ### Playlist View
-![Playlist View](./screenshots/2.jpg)&nbsp;&nbsp;![Playlist View](./screenshots/3.jpg)&nbsp;&nbsp;![Playlist View](./screenshots/4.jpg)
+<img src="./screenshots/2.jpg" alt="Playlist View 1" style="height: 150px; width: auto;"/> 
+<img src="./screenshots/3.jpg" alt="Playlist View 2" style="height: 150px; width: auto;"/> 
+<img src="./screenshots/4.jpg" alt="Playlist View 3" style="height: 150px; width: auto;"/>
 
 ### Now Playing Screen
-![Now Playing Screen](./screenshots/4.jpg)
+<img src="./screenshots/4.jpg" alt="Now Playing Screen" style="height: 150px; width: auto;"/>
 
 ## Demo Video
 

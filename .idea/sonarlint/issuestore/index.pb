@@ -49,7 +49,5 @@ S
 #base/src/main/res/values/styles.xml,8\a\8a4d4b7a4cf8a50551151a1c59a624bf7cdc68e3
 l
 <app/src/main/java/vn/xdeuhug/music/ui/view/SplashActivity.kt,7\7\77e65fa82529b8961746ffa50dae925f6f3d28f8
-g
-7app/src/main/java/vn/xdeuhug/music/base/BaseActivity.kt,e\a\ea826c64399d5e4283616fb6457f0bb6ea724e2e
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
