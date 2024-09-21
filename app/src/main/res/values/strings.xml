@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Music Player</string>
+    <string name="play">Phát</string>
+    <string name="loading_lyrics">Đang tải lời bài hát...</string>
+    <string name="not_have_lyrics_this_song">Chưa có lời bài hát</string>
+</resources>

@@ -1,0 +1,155 @@
+import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'vn.xdeuhug.music'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "vn.xdeuhug.music"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file(StoreFile)
+            storePassword StorePassword
+            keyAlias KeyAlias
+            keyPassword KeyPassword
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            excludes += ['META-INF/*******']
+        }
+        resources {
+            excludes += ['META-INF/*******']
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.config
+
+            addManifestPlaceholders(['app_name': 'Music Player'])
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-sdk.pro', 'proguard-app.pro'
+        }
+
+        release {
+            debuggable false
+            jniDebuggable false
+            shrinkResources false
+            minifyEnabled true
+            signingConfig signingConfigs.config
+
+            addManifestPlaceholders(['app_name': 'Music Player'])
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-sdk.pro', 'proguard-app.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding {
+        enable = true
+    }
+    dataBinding {
+        enable = true
+    }
+
+    tasks.withType(KotlinJvmCompile.class).configureEach {
+        jvmTargetValidationMode = JvmTargetValidationMode.WARNING
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        disable "Instantiatable"
+
+//        // Tắt cảnh báo mã cứng văn bản
+//        disable 'HardcodedText'
+//        // Tắt cảnh báo mô tả hình ảnh
+//        disable 'ContentDescription'
+    }
+
+    applicationVariants.configureEach { variant ->
+        // apk cấu hình tên tệp đầu ra
+        variant.outputs.configureEach { output ->
+            outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name
+            if (variant.buildType.name == buildTypes.release.getName()) {
+                outputFileName += '_' + new Date().format('MMdd')
+            }
+            outputFileName += '.apk'
+        }
+    }
+
+    //Generate Dynamic Feature
+    bundle {
+        //Generate APKs for devices with different screen densities//
+        density {
+            enableSplit false
+        }
+        //Generate APKs for devices with different CPU architectures//
+        abi {
+            enableSplit false
+            //Create a split APK for each language//
+        }
+        language {
+            enableSplit true
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation "com.airbnb.android:lottie:5.2.0"
+    // ViewModel và LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+
+    // Lifecycle runtime để quản lý vòng đời của các component
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+
+    // Dependency cho ViewModel SavedState (nếu bạn muốn giữ dữ liệu ViewModel khi cấu hình thay đổi)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2"
+
+    implementation "com.google.android.exoplayer:exoplayer:2.19.0"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-simplexml:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation("com.google.code.gson:gson:2.10")
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}
