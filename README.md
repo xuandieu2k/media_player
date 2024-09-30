@@ -37,14 +37,11 @@ Here are a few screenshots of the Media Player app in action:
 Check out the demo video below to see the app in action:
 
 [Media Player Demo]
-
-<iframe width="640" height="488" src="https://www.youtube.com/embed/LNV9Q64Ioi8" title="Demo ứng dụng Media Player(P2)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 <a href="https://www.youtube.com/watch?v=LNV9Q64Ioi8">
 <img src="./screenshots/1.jpg" alt="Media Player Demo" style="height: 360px; width: auto;"/>
-</a>4
+</a>
 
-Click on the image above or [here](https://youtu.be/UX_Gqoeq4HE) to watch the full demo on YouTube.
+Click on the image above or [here](https://www.youtube.com/watch?v=LNV9Q64Ioi8) to watch the full demo on YouTube.
 
 ## Installation
 
