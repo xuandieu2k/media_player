@@ -5,8 +5,6 @@ I
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-A
-base/build.gradle,3\0\30faf96bd34633205bceb4dda84a27a3761a1e29
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
@@ -45,9 +43,11 @@ F
 app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
 D
 app/proguard-sdk.pro,d\f\df69ad522544ee552c18f4fedf3656346f589257
-S
-#base/src/main/res/values/styles.xml,8\a\8a4d4b7a4cf8a50551151a1c59a624bf7cdc68e3
 l
 <app/src/main/java/vn/xdeuhug/music/ui/view/SplashActivity.kt,7\7\77e65fa82529b8961746ffa50dae925f6f3d28f8
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+g
+7app/src/main/java/vn/xdeuhug/music/helper/MusicUtils.kt,1\5\156864119822550e5824b2aedfac45d6d04afe58
+j
+:app/src/main/java/vn/xdeuhug/music/data/model/LyricChar.kt,d\d\dd9a284e96c6824889a5b51a06ee48786943600d

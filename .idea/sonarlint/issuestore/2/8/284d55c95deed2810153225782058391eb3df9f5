@@ -1,7 +1,4 @@
 
-ckotlin:S125>"Remove this commented out code.(ºŠ¥†8Ã×Ë–¡2J$3b24fc8e-6d91-42be-be3f-05e62e93642e
-dkotlin:S1128
-"Remove this unused import.(’—ÄÑùÿÿÿÿ8Ñ×Ë–¡2J$48d09c6d-8932-4cc9-a7c8-424c35417d06
-dkotlin:S1128"Remove this unused import.(ŞÓÊ½ûÿÿÿÿ8Ñ×Ë–¡2J$2b331d0a-ddd8-48e6-adde-9c39f09600c2
-œkotlin:S3776]"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ˆ¬˜ûÿÿÿÿ8øüÜ–¡2J$c8d99fa9-b1d9-463b-8b16-6b96c864972f
-–kotlin:S6516!"LReplace explicit functional interface implementation with lambda expression.(¹ğ¶ûÿÿÿÿ8××Ë–¡2J$7bb96be9-ec16-4daf-8a2f-67e0256d80a6
+hkotlin:S125q"Remove this commented out code.(’¼¬ıúÿÿÿÿ8Á¶Ê‘¤2J$b918840d-c58f-4c57-ba7f-bc3710e5bf70
+œkotlin:S3776="RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ˆ¬˜ûÿÿÿÿ8Í»£‘¤2J$19321faf-0819-461e-991f-2726322da666
+–kotlin:S6516 "LReplace explicit functional interface implementation with lambda expression.(¹ğ¶ûÿÿÿÿ8Ğ»£‘¤2J$55ae2e60-d888-4d08-b3f1-0c2d78b3522e

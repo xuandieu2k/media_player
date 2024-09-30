@@ -7,13 +7,12 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.await
+import vn.xdeuhug.music.data.model.LyricChar
 import vn.xdeuhug.music.data.model.LyricLine
 import vn.xdeuhug.music.data.model.LyricWord
 import vn.xdeuhug.music.network.RetrofitClient
-import java.util.logging.Logger
 
 /**
  * @Author: NGUYEN XUAN DIEU
@@ -59,37 +58,6 @@ class MusicRepository {
         }
     }
 
-    //    private fun calculateEndTimeForLyrics(lyrics: List<LyricWord>): List<LyricWord> {
-//        val mutableLyrics = lyrics.toMutableList()
-//        val wordDuration = 0.2f
-//
-//        return mutableLyrics.mapIndexed { index, word ->
-//            var endTime =
-//                if (index < mutableLyrics.size - 1) mutableLyrics[index + 1].startTime else word.startTime + wordDuration
-//            if (endTime - word.startTime < wordDuration) {
-//                endTime = word.startTime + wordDuration * 2
-//                if (index + 1 < mutableLyrics.size) {
-//                    mutableLyrics[index + 1].startTime = endTime
-//                }
-//            }
-//            if (word.text.trim() == "thềm" && index - 1 >= 0) {
-//                val newWord = word.copy(
-//                    text = "bên ",
-//                    startTime = word.startTime,
-//                    endTime = word.startTime + wordDuration
-//                )
-//                mutableLyrics.add(index, newWord)
-//                mutableLyrics[index + 1] = mutableLyrics[index + 1].copy(startTime = newWord.endTime)
-//                endTime = newWord.endTime + wordDuration
-//            }
-//            Log.e(
-//                "Log time data:",
-//                "start: ${word.startTime} end: $endTime ${endTime - word.startTime} ${word.text}"
-//            )
-//
-//            word.copy(endTime = endTime)
-//        }
-//    }
     private fun calculateEndTimeForLyrics(lyrics: List<LyricWord>): List<LyricWord> {
         val mutableLyrics = lyrics.toMutableList()
         val wordDuration = 0.2f
@@ -97,6 +65,7 @@ class MusicRepository {
 
         while (index < mutableLyrics.size) {
             val word = mutableLyrics[index]
+            word.text = word.text.trim()
             var endTime =
                 if (index < mutableLyrics.size - 1) mutableLyrics[index + 1].startTime else word.startTime + wordDuration
             if (endTime - word.startTime < wordDuration) {
@@ -109,14 +78,18 @@ class MusicRepository {
                 val newWord = word.copy(
                     text = "bên",
                     startTime = word.startTime,
-                    endTime = word.startTime + wordDuration * 2
+                    endTime = word.startTime + wordDuration * 2,
+                    lyricChars = arrayListOf()
                 )
+                handleLyricCharacter(newWord)
                 mutableLyrics.add(index, newWord)
                 mutableLyrics[index + 1] = mutableLyrics[index + 1].copy(
-                    startTime = newWord.endTime, endTime = newWord.endTime + wordDuration * 2
+                    startTime = newWord.endTime,
+                    endTime = newWord.endTime + wordDuration * 2,
+                    lyricChars = arrayListOf()
                 )
                 index++
-            } else if (word.text.trim() == "nao " && word.endTime - word.startTime > 2) {
+            } else if (word.text.trim() == "nao" && word.endTime - word.startTime > 2) {
                 var updatedEndTime = word.startTime + wordDuration * 2
                 mutableLyrics[index] = word.copy(endTime = updatedEndTime)
                 if (index + 1 < mutableLyrics.size) {
@@ -135,14 +108,37 @@ class MusicRepository {
             } else {
                 mutableLyrics[index] = word.copy(endTime = endTime)
             }
+            handleLyricCharacter(mutableLyrics[index])
             index++
-            Log.e(
-                "Log time data:",
-                "start: ${word.startTime} end: $endTime ${endTime - word.startTime} ${word.text}"
-            )
+//            Log.e(
+//                "Log time data:",
+//                "start: ${word.startTime} end: $endTime ${endTime - word.startTime} ${word.text}"
+//            )
         }
 
         return mutableLyrics
+    }
+
+    private fun handleLyricCharacter(lyricWord: LyricWord) {
+        val wordStartTime = lyricWord.startTime
+        val wordEndTime = lyricWord.endTime
+        val wordDuration = wordEndTime - wordStartTime
+        val chars = lyricWord.text.trim().toCharArray()
+        val charDuration = wordDuration / chars.size
+        chars.forEachIndexed { index, char ->
+            val charStartTime = wordStartTime + (charDuration * index)
+            val charEndTime = charStartTime + charDuration
+            lyricWord.lyricChars.add(
+                LyricChar(
+                    index,
+                    char,
+                    charStartTime,
+                    charEndTime,
+                    charDuration
+                )
+            )
+        }
+        lyricWord.lyricChars.sortBy { it.index }
     }
 
 

@@ -38,11 +38,11 @@ Check out the demo video below to see the app in action:
 
 [Media Player Demo]
 
-<iframe width="810" height="443" src="https://www.youtube.com/embed/UX_Gqoeq4HE" title="Demo ứng dụng karaoke Music Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="640" height="488" src="https://www.youtube.com/embed/LNV9Q64Ioi8" title="Demo ứng dụng Media Player(P2)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<a href="https://youtu.be/UX_Gqoeq4HE">
+<a href="https://www.youtube.com/watch?v=LNV9Q64Ioi8">
 <img src="./screenshots/1.jpg" alt="Media Player Demo" style="height: 360px; width: auto;"/>
-</a>
+</a>4
 
 Click on the image above or [here](https://youtu.be/UX_Gqoeq4HE) to watch the full demo on YouTube.
 

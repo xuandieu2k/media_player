@@ -3,23 +3,19 @@ package vn.xdeuhug.music.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Shader
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.text.TextPaint
-import android.text.style.CharacterStyle
 import android.text.style.ForegroundColorSpan
-import android.text.style.UpdateAppearance
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.xdeuhug.music.R
 import vn.xdeuhug.music.data.model.LyricLine
 import vn.xdeuhug.music.databinding.ItemLyricsBinding
+import vn.xdeuhug.music.helper.MusicUtils.interpolate
+import vn.xdeuhug.music.helper.MusicUtils.smoothStep
 
 /**
  * @Author: NGUYEN XUAN DIEU
@@ -110,7 +106,7 @@ class LyricsAdapter : RecyclerView.Adapter<LyricsAdapter.ViewHolder>() {
         holder.onBind(lyrics[position], currentPosition)
     }
 
-        class ViewHolder(private val binding: ItemLyricsBinding, private var context: Context) :
+    class ViewHolder(private val binding: ItemLyricsBinding, private var context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(lyricLine: LyricLine, currentPosition: Float) {
@@ -118,111 +114,49 @@ class LyricsAdapter : RecyclerView.Adapter<LyricsAdapter.ViewHolder>() {
             val builder = SpannableStringBuilder()
 
             lyricWords.forEach { word ->
-                val wordStartTime = word.startTime
-                val wordEndTime = word.endTime
+                val chars = word.text.trim().toCharArray()
+                chars.forEachIndexed { index, char ->
+                    val spannableChar = SpannableString(char.toString())
+                    val color: Int
 
-                val spannableWord = SpannableString(word.text)
-                val color: Int
+                    when {
+                        currentPosition >= word.lyricChars[index].endTime -> {
+                            color = Color.YELLOW
+                        }
 
-                when {
-                    currentPosition >= wordEndTime -> {
-                        color = Color.YELLOW
+                        currentPosition in word.lyricChars[index].startTime..word.lyricChars[index].endTime -> {
+                            val ratio =
+                                (currentPosition - word.lyricChars[index].startTime) / word.lyricChars[index].duration
+                            val interpolatedRatio = smoothStep(0f, 1f, ratio)
+                            val yellowColor = Color.rgb(255, 255, 0)
+                            val startColor = context.getColor(R.color.textColor)
+                            val colorMerge = interpolate(
+                                Color.red(startColor),
+                                Color.red(yellowColor),
+                                interpolatedRatio
+                            )
+                            color = Color.rgb(colorMerge, colorMerge, colorMerge)
+                        }
+
+                        else -> {
+                            color = context.getColor(R.color.textColor)
+                        }
                     }
 
-                    currentPosition in wordStartTime..wordEndTime -> {
-                        val ratio =
-                            (currentPosition - wordStartTime) / (wordEndTime - wordStartTime)
-                        color = Color.argb(255, 255, (255 * ratio).toInt(), 0)
+                    spannableChar.setSpan(
+                        ForegroundColorSpan(color),
+                        0,
+                        spannableChar.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
 
-                    }
-
-                    else -> {
-                        color = context.getColor(R.color.textColor)
-                    }
+                    builder.append(spannableChar)
                 }
-
-                spannableWord.setSpan(
-                    ForegroundColorSpan(color),
-                    0,
-                    word.text.length,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-
-                builder.append(spannableWord).append(" ")
+                builder.append(" ")
             }
 
             binding.tvLyrics.text = builder
         }
     }
-//    class ViewHolder(private val binding: ItemLyricsBinding, private var context: Context) :
-//        RecyclerView.ViewHolder(binding.root) {
-//
-//        fun onBind(lyricLine: LyricLine, currentPosition: Float) {
-//            val lyricWords = lyricLine.lyricWords ?: emptyList()
-//            val builder = SpannableStringBuilder()
-//
-//            lyricWords.forEach { word ->
-//                val wordStartTime = word.startTime
-//                val wordEndTime = word.endTime
-//
-//                val spannableWord = SpannableString(word.text)
-//
-//                if (currentPosition in wordStartTime..wordEndTime) {
-//                    val ratio = (currentPosition - wordStartTime) / (wordEndTime - wordStartTime)
-//                    spannableWord.setSpan(
-//                        GradientColorSpan(
-//                            context,
-//                            Color.YELLOW,
-//                            context.getColor(R.color.textColor),
-//                            ratio,
-//                            word.text
-//                        ),
-//                        0,
-//                        word.text.length,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                    )
-//                } else if (currentPosition >= wordEndTime) {
-//                    spannableWord.setSpan(
-//                        ForegroundColorSpan(Color.YELLOW),
-//                        0,
-//                        word.text.length,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                    )
-//                } else {
-//                    spannableWord.setSpan(
-//                        ForegroundColorSpan(context.getColor(R.color.textColor)),
-//                        0,
-//                        word.text.length,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//                    )
-//                }
-//
-//                builder.append(spannableWord).append(" ")
-//            }
-//
-//            binding.tvLyrics.text = builder
-//        }
-//    }
-//
-//    class GradientColorSpan(
-//        private val context: Context,
-//        private val startColor: Int,
-//        private val endColor: Int,
-//        private val ratio: Float,
-//        private val text: String
-//    ) : CharacterStyle(), UpdateAppearance {
-//
-//        override fun updateDrawState(tp: TextPaint) {
-//            val textWidth = tp.measureText(text)
-//            val shader = LinearGradient(
-//                0f, 0f, textWidth * ratio, 0f,
-//                startColor,
-//                endColor,
-//                Shader.TileMode.CLAMP
-//            )
-//            tp.shader = shader
-//        }
-//    }
 
 }
-

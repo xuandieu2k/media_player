@@ -13,5 +13,6 @@ data class LyricWord(
 //    @field:Attribute(name = "ve")
     var endTime: Float = 0f,    // Thời gian kết thúc (giây)
     @field:Text
-    var text: String = ""  // Nội dung từ
+    var text: String = "",  // Nội dung từ
+    var lyricChars: ArrayList<LyricChar> = arrayListOf()
 )
